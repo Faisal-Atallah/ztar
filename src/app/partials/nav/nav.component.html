@@ -1,0 +1,7 @@
+<nav class="flex flex-1 flex-col">
+  <ul role="list" class="flex flex-1 flex-col gap-y-2">
+    <ng-container *ngFor="let item of navItems; trackBy: trackByFn">
+      <app-widget-nav-item [item]="item"></app-widget-nav-item>
+     </ng-container>
+  </ul>
+</nav>

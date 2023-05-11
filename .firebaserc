@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ztar-806e4": {
+      "hosting": {
+        "ztar": [
+          "ztar-806e4"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ztar-806e4"
+  }
+}

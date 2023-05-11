@@ -1,0 +1,128 @@
+<div class="flex min-h-full w-full">
+  <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+    <div class="mx-auto w-full max-w-sm lg:w-96">
+      <div>
+
+        <app-widget-image-holder src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="ztar"
+          cssClasses="h-10 w-auto"> </app-widget-image-holder>
+
+        <h2 class="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign up
+        </h2>
+      </div>
+
+      <div class="mt-10">
+        <div>
+          <form [formGroup]="signUpForm" #signUpNgForm="ngForm" class="space-y-6">
+
+            <div class="mt-2">
+              <mat-form-field class="w-full">
+                <mat-label>First name</mat-label>
+                <input id="name" matInput [formControlName]="'first_name'">
+                <mat-error *ngIf="signUpForm.get('first_name')?.hasError('required')">
+                  First name is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="mt-2">
+              <mat-form-field class="w-full">
+                <mat-label>Last name</mat-label>
+                <input id="name" matInput [formControlName]="'last_name'">
+              </mat-form-field>
+            </div>
+            <div class="mt-2">
+              <mat-form-field class="w-full">
+                <mat-label>Email address</mat-label>
+                <input id="email" matInput [formControlName]="'email'">
+                <mat-error *ngIf="signUpForm.get('email')?.hasError('required')">
+                  Email address is required.
+                </mat-error>
+                <mat-error *ngIf="signUpForm.get('email')?.hasError('email')">
+                  Please enter a valid email address.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="mt-2">
+              <!-- Password field -->
+              <mat-form-field class="w-full">
+                <mat-label>Password</mat-label>
+                <input id="password" matInput type="password" [formControlName]="'password'" #passwordField>
+                <button mat-icon-button type="button"
+                  (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                  matSuffix>
+                  <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'">visibility</mat-icon>
+                  <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'">visibility_off</mat-icon>
+                </button>
+                <mat-error *ngIf="signUpForm.get('password')?.hasError('minlength')">
+                  Password must be at least 8 character.
+                </mat-error>
+                <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
+                  Password is required.
+                </mat-error>
+
+                <mat-error *ngIf="signUpForm.get('password')?.hasError('strong')">
+                  Must have at least one number, one lowercase and one uppercase letter and one special character.
+                </mat-error>
+
+              </mat-form-field>
+            </div>
+
+            <div class="mt-2">
+              <!-- Password field -->
+              <mat-form-field class="w-full">
+                <mat-label>Confirm Password</mat-label>
+                <input id="password" matInput type="password" [formControlName]="'confirm_password'"
+                  #confirmPasswordField>
+                <button mat-icon-button type="button"
+                  (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                  matSuffix>
+                  <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'">visibility</mat-icon>
+                  <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'">visibility_off</mat-icon>
+                </button>
+                <mat-error *ngIf="signUpForm.get('confirm_password')?.hasError('required')">
+                  Confirm password is required.
+                </mat-error>
+
+                <mat-error *ngIf="signUpForm.get('confirm_password')?.hasError('mustMatch')">
+                  Passwords must match.
+                </mat-error>
+
+              </mat-form-field>
+            </div>
+
+            <div>
+              <button type="submit" (click)="signUp()" [disabled]="signUpForm.disabled" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold
+                leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2
+                focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="mt-10">
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+              <div class="w-full border-t border-gray-200"></div>
+            </div>
+            <div class="relative flex justify-center text-sm font-medium leading-6">
+              <span class="bg-white px-6 text-gray-900">Already have an account?</span>
+            </div>
+          </div>
+
+          <div class="mt-6 ">
+            <a [routerLink]="['/sign-in']"
+              class="flex w-full items-center justify-center gap-3 rounded-md bg-[#24292F] px-3 py-1.5 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#24292F]">
+              <span class="text-sm font-semibold leading-6">Sign In</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="relative hidden w-0 flex-1 lg:block">
+    <app-widget-image-holder
+      src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
+      alt="ztar" cssClasses="absolute inset-0 h-full w-full object-cover" />
+  </div>
+</div>
