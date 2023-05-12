@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
 import { CATEGORIES_API_END_POINT } from 'src/app/core/constants';
+import { navigate } from 'src/app/core/utils';
 import { ERROR_ROUTE_PATH_WITH_SLASH } from '../../error/error-500';
 import { Category } from './categories.types';
 
@@ -55,7 +56,7 @@ export class CategoriesService {
           this._categories.next(categories);
         });
     }).catch((error) => {
-      this._router.navigate([ERROR_ROUTE_PATH_WITH_SLASH]);
+      navigate(ERROR_ROUTE_PATH_WITH_SLASH, this._router);
     });
   }
 
@@ -75,7 +76,7 @@ export class CategoriesService {
           this._category.next(category);
         });
     }).catch((error) => {
-      this._router.navigate([ERROR_ROUTE_PATH_WITH_SLASH]);
+      navigate(ERROR_ROUTE_PATH_WITH_SLASH, this._router);
     });
   }
 
@@ -89,7 +90,7 @@ export class CategoriesService {
       .doc(`${CATEGORIES_API_END_POINT}/${id}`)
       .delete()
       .catch((error) => {
-        this._router.navigate([ERROR_ROUTE_PATH_WITH_SLASH]);
+        navigate(ERROR_ROUTE_PATH_WITH_SLASH, this._router);
       })
       .then(() => {
         this.getCategories();

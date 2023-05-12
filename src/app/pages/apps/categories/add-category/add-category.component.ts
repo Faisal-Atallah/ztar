@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { navigate } from 'src/app/core/utils';
 import { CATEGORIES_ROUTE_PATH_WITH_SLASH } from '../categories.constants';
 import { AddCategoryService } from './add-category.service';
 import { AddCategoryForm } from './add-category.types';
@@ -16,7 +17,7 @@ import { AddCategoryForm } from './add-category.types';
   templateUrl: './add-category.component.html',
   styleUrls: ['./add-category.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddCategoryComponent implements OnInit {
   @ViewChild('addCategoryNgForm') addCategoryNgForm: NgForm;
@@ -50,7 +51,7 @@ export class AddCategoryComponent implements OnInit {
     const name: string = this.addCategoryForm.get('name')?.value as string;
 
     this._addCategoryService.addCategory(name).then(() => {
-      this._router.navigate([CATEGORIES_ROUTE_PATH_WITH_SLASH]);
+      navigate(CATEGORIES_ROUTE_PATH_WITH_SLASH, this._router);
     });
   }
 
@@ -61,7 +62,7 @@ export class AddCategoryComponent implements OnInit {
    */
   private _createAddCategoryForm(): void {
     this.addCategoryForm = this._formBuilder.nonNullable.group({
-      name: ['', [Validators.required]]
+      name: ['', [Validators.required]],
     });
   }
 }

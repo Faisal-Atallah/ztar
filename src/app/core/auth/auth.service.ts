@@ -7,9 +7,13 @@ import {
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { SIGN_IN_ROUTE_PATH_WITH_SLASH } from 'src/app/pages/auth/sign-in';
-import { HOME_ROUTE_PATH } from 'src/app/pages/landing/home';
+import {
+  HOME_ROUTE_PATH,
+  HOME_ROUTE_PATH_WITH_SLASH,
+} from 'src/app/pages/landing/home';
 import { StorageService } from '../helpers/storage';
 import { User, USER_AUTH } from '../user';
+import { navigate } from '../utils';
 
 @Injectable({
   providedIn: 'root',
@@ -46,7 +50,7 @@ export class AuthService {
         this._setUserData(result.user);
         this._angularFireAuth.authState.subscribe((user) => {
           if (user) {
-            this._router.navigate([`/${HOME_ROUTE_PATH}`]);
+            navigate(HOME_ROUTE_PATH_WITH_SLASH, this._router);
           }
         });
       })
@@ -80,9 +84,7 @@ export class AuthService {
     this._angularFireAuth.signOut().then(() => {
       this._storageService.removeData(USER_AUTH);
 
-      setTimeout(() => {
-        this._router.navigate([SIGN_IN_ROUTE_PATH_WITH_SLASH]);
-      }, 500);
+      this._navigateToSignIn();
     });
   }
 
@@ -131,5 +133,16 @@ export class AuthService {
         this._storageService.saveData(USER_AUTH, 'null');
       }
     });
+  }
+
+  /**
+   * Navigate To Sign In
+   * @private
+   * @returns {void}
+   */
+  private _navigateToSignIn(): void {
+    setTimeout(() => {
+      navigate(SIGN_IN_ROUTE_PATH_WITH_SLASH, this._router);
+    }, 500);
   }
 }

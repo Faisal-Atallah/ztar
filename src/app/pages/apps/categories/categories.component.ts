@@ -6,15 +6,12 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { unsubscribe } from 'src/app/core/utils';
+import { navigate, unsubscribe } from 'src/app/core/utils';
 import { CategoriesService } from './categories.service';
 import { Category } from './categories.types';
-import {
-  EDIT_CATEGORY_ROUTE_PATH,
-  EDIT_CATEGORY_ROUTE_PATH_WITH_SLASH,
-} from './edit-category';
+import { EDIT_CATEGORY_ROUTE_PATH_WITH_SLASH } from './edit-category';
 
 @Component({
   selector: 'app-categories',
@@ -70,7 +67,7 @@ export class CategoriesComponent implements OnInit, OnDestroy {
    * @returns {void}
    */
   editCategory(id: string): void {
-    this._router.navigate([`${EDIT_CATEGORY_ROUTE_PATH_WITH_SLASH}`, id]);
+    navigate(`${EDIT_CATEGORY_ROUTE_PATH_WITH_SLASH}/${id}`, this._router);
   }
 
   /**

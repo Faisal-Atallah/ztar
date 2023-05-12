@@ -8,7 +8,6 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { unsubscribe } from 'src/app/core/utils';
 import { CategoriesService } from '../categories.service';
@@ -34,13 +33,11 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
    *
    * @param {FormBuilder}_formBuilder
    * @param {EditCategoryService}_editCategoryService
-   * @param {Router}_router
    * @param {ChangeDetectorRef}_changeDetectorRef
    */
   constructor(
     private _formBuilder: FormBuilder,
     private _editCategoryService: EditCategoryService,
-    private _router: Router,
     private _changeDetectorRef: ChangeDetectorRef,
     private _categoriesService: CategoriesService
   ) {}

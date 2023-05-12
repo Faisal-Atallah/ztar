@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth';
 import { MustMatch } from 'src/app/core/helpers/validations/must-match';
 import { StrongValidator } from 'src/app/core/helpers/validations/strong-validation';
-import { SIGN_IN_ROUTE_PATH } from '../sign-in';
+import { navigate } from 'src/app/core/utils';
+import { SIGN_IN_ROUTE_PATH_WITH_SLASH } from '../sign-in';
 import { SignUpForm } from './sign-up.form.types';
 
 @Component({
@@ -55,7 +56,7 @@ export class SignUpComponent implements OnInit {
 
       this.signUpNgForm.resetForm();
 
-      this._router.navigate([`/${SIGN_IN_ROUTE_PATH}`]);
+      navigate(SIGN_IN_ROUTE_PATH_WITH_SLASH, this._router);
     });
   }
 
