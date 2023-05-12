@@ -61,11 +61,11 @@ export class CategoriesService {
   }
 
   /**
-   * Get Category
+   * Get Category By Id
    * @param {string}id
    * @returns {Promise<Category>}
    */
-  getCategory(id: string): Promise<Category> {
+  getCategoryById(id: string): Promise<Category> {
     return new Promise<any>((resolve) => {
       this._angularFirestore
         .collection(CATEGORIES_API_END_POINT)

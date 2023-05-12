@@ -1,0 +1,63 @@
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-y-auto" cdkScrollable>
+
+  <!-- Header -->
+  <div class="relative flex-0 py-8 px-4 sm:p-16 overflow-hidden bg-gray-800 dark">
+    <!-- Background - @formatter:off -->
+
+    <svg class="absolute inset-0 pointer-events-none" viewBox="0 0 960 540" width="100%" height="100%"
+      preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <g class="text-gray-700 opacity-25" fill="none" stroke="currentColor" stroke-width="100">
+        <circle r="234" cx="196" cy="23"></circle>
+        <circle r="234" cx="790" cy="491"></circle>
+      </g>
+    </svg>
+    <!-- @formatter:on -->
+    <div class="z-10 relative flex flex-col items-center text-white">
+      <h2 class="text-xl font-semibold">Ztar Books</h2>
+      <div class="mt-1 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight text-center">
+        What do you want to read today?
+      </div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="flex flex-auto p-6 sm:p-10">
+
+    <div class="flex flex-col flex-auto w-full max-w-xs sm:max-w-5xl mx-auto">
+      <!-- Filters -->
+      <div class="flex flex-col sm:flex-row items-center   w-full max-w-xs sm:max-w-none">
+        <mat-form-field class="w-full" [subscriptSizing]="'dynamic'">
+          <mat-select [value]="'all'" (selectionChange)="filterByCategory($event)">
+            <mat-option [value]="'all'">All</mat-option>
+            <ng-container *ngFor="let category of categories; trackBy: trackByFn">
+              <mat-option [value]="category.name">{{category?.name}}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Books -->
+      <ng-container *ngIf="this.filteredBooks.length; else noBooks">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
+          <ng-container *ngFor="let book of filteredBooks; trackBy: trackByFn">
+
+            <mat-card class="flex flex-col shadow h-36">
+              <mat-card-header>
+                <mat-card-title>{{book?.name}}</mat-card-title>
+                <mat-card-subtitle>{{book?.category}}</mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+
+          </ng-container>
+        </div>
+      </ng-container>
+      <!-- No Books -->
+      <ng-template #noBooks [ngIf]="requestCompleted">
+        <div class="flex flex-auto bt-2 flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
+          <div class="mt-6 text-2xl font-semibold tracking-tight text-secondary">No books found!</div>
+        </div>
+      </ng-template>
+    </div>
+
+  </div>
+
+</div>

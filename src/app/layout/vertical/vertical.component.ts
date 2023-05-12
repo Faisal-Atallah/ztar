@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AuthService } from 'src/app/core/auth';
+import { BOOKS_ROUTE_PATH_WITH_SLASH } from 'src/app/pages/apps/books';
 import { CATEGORIES_ROUTE_PATH_WITH_SLASH } from 'src/app/pages/apps/categories';
 import { HOME_ROUTE_PATH_WITH_SLASH } from 'src/app/pages/landing/home';
 import { NavItem } from 'src/app/shared/types';
@@ -13,7 +14,12 @@ import { NavItem } from 'src/app/shared/types';
 export class VerticalComponent {
   navItems: NavItem[] = [
     { id: '1', title: 'Home', link: HOME_ROUTE_PATH_WITH_SLASH, icon: 'home' },
-    { id: '2', title: 'Books', link: '', icon: 'library_books' },
+    {
+      id: '2',
+      title: 'Books',
+      link: BOOKS_ROUTE_PATH_WITH_SLASH,
+      icon: 'library_books',
+    },
     {
       id: '3',
       title: 'Categories',

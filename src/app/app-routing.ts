@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 import { AuthGuard, NoAuthGuard } from './core/auth/guards';
 import { LayoutComponent } from './layout/layout.component';
+import { BOOKS_ROUTE_PATH } from './pages/apps/books';
 import { CATEGORIES_ROUTE_PATH } from './pages/apps/categories';
 import { ADD_CATEGORY_ROUTE_PATH } from './pages/apps/categories/add-category/add-category.constants';
 import { EDIT_CATEGORY_ROUTE_PATH } from './pages/apps/categories/edit-category';
@@ -13,7 +14,7 @@ export const appRoutes: Route[] = [
   {
     path: '',
     redirectTo: SIGN_IN_ROUTE_PATH,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   // {
   //   path: '',
@@ -82,6 +83,16 @@ export const appRoutes: Route[] = [
       ),
   },
   {
+    path: BOOKS_ROUTE_PATH,
+    canMatch: [AuthGuard],
+    component: LayoutComponent,
+    data: {
+      layout: 'vertical',
+    },
+    loadChildren: () =>
+      import('../app/pages/apps/books').then((m) => m.BooksModule),
+  },
+  {
     path: ERROR_ROUTE_PATH,
     canMatch: [AuthGuard],
     component: LayoutComponent,
@@ -92,6 +103,6 @@ export const appRoutes: Route[] = [
       import('../app/pages/error/error-500').then((m) => m.Error500Module),
   },
 
-  // { path: '**', redirectTo: SIGN_IN_ROUTE_PATH },
-  // { path: '**', redirectTo: HOME_ROUTE_PATH },
+  { path: '**', redirectTo: SIGN_IN_ROUTE_PATH },
+  { path: '**', redirectTo: HOME_ROUTE_PATH },
 ];

@@ -31,6 +31,6 @@ export class EditCategoryResolver implements Resolve<Category> {
   ): Promise<Category> {
     const id: string = route.paramMap.get('id') as string;
 
-    return this._categoriesService.getCategory(id);
+    return this._categoriesService.getCategoryById(id);
   }
 }

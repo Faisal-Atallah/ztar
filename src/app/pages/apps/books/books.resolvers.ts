@@ -4,18 +4,18 @@ import {
   Resolve,
   RouterStateSnapshot,
 } from '@angular/router';
-import { CategoriesService } from './categories.service';
-import { Category } from './categories.types';
+import { BooksService } from './books.service';
+import { Book } from './books.types';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CategoriesResolver implements Resolve<Category[]> {
+export class BooksResolver implements Resolve<Book[]> {
   /**
    * Constructor
-   * @param {CategoriesService}_categoriesService
+   * @param {BooksService}_booksService
    */
-  constructor(private _categoriesService: CategoriesService) {}
+  constructor(private _booksService: BooksService) {}
 
   /**
    * Resolver
@@ -27,7 +27,7 @@ export class CategoriesResolver implements Resolve<Category[]> {
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Promise<Category[]> {
-    return this._categoriesService.getCategories();
+  ): Promise<Book[]> {
+    return this._booksService.getBooks();
   }
 }
