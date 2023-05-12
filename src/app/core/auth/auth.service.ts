@@ -93,7 +93,8 @@ export class AuthService {
    * @returns {Observable<boolean>}
    */
   isAccessAllowed(): Observable<boolean> {
-    return this._storageService.getData(USER_AUTH) !== 'null'
+    return this._storageService.getData(USER_AUTH) !== 'null' &&
+      this._storageService.isStorageItemExistent(USER_AUTH)
       ? of(true)
       : of(false);
   }

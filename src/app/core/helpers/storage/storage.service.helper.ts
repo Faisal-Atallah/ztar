@@ -11,7 +11,6 @@ export class StorageService {
    * @param {string}key
    * @param {any}value
    * @returns {void}
-   * @public
    */
   public saveData(key: string, value: any): void {
     localStorage.setItem(key, JSON.stringify(value));
@@ -21,9 +20,8 @@ export class StorageService {
    * Get Data
    * @param {string}key
    * @returns {string | null}
-   * @public
    */
-  public getData(key: string): string | null {
+  getData(key: string): string | null {
     return JSON.parse(localStorage.getItem(key)!);
   }
 
@@ -31,18 +29,29 @@ export class StorageService {
    * Remove Data
    * @param {string}key
    * @returns {void}
-   * @public
    */
-  public removeData(key: string): void {
+  removeData(key: string): void {
     localStorage.removeItem(key);
   }
 
   /**
    * Clear Data
    * @returns {void}
-   * @public
    */
-  public clearData(): void {
+  clearData(): void {
     localStorage.clear();
+  }
+
+  /**
+   * Is Storage Item Existent
+   * @param {string}key
+   * @returns {boolean}
+   */
+  isStorageItemExistent(key: string): boolean {
+    if (key in localStorage) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
