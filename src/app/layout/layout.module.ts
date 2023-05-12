@@ -8,7 +8,7 @@ const layoutModules = [EmptyLayoutModule, VerticalModule];
 
 @NgModule({
   declarations: [LayoutComponent],
-  imports: [SharedModule, EmptyLayoutModule,VerticalModule],
+  imports: [SharedModule, EmptyLayoutModule, VerticalModule],
   exports: [LayoutComponent, ...layoutModules],
 })
 export class LayoutModule {}

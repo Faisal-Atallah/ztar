@@ -104,9 +104,9 @@ export class BooksListComponent implements OnInit, OnDestroy {
    * Track ByFn
    * @param {number}index
    * @param {string}id
-   * @returns {string}
+   * @returns {any}
    */
-  trackByFn(index: number, id: string): string {
+  trackByFn(index: number, id: string): any {
     return trackByFn(index, id);
   }
 }

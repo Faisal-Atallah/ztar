@@ -13,8 +13,8 @@ export function unsubscribe<T = any>(subscription: Subject<void>): void {
 
 /**
  * Track ByFn
- * @param index
- * @param item
+ * @param {number}index
+ * @param {any}item
  * @returns {any}
  */
 export function trackByFn(index: number, item: any): any {

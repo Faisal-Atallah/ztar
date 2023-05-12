@@ -1,3 +1,1 @@
-export type Layout =
-  | 'empty'
-  | 'vertical';
+export type Layout = 'empty' | 'vertical';

@@ -2,18 +2,19 @@
   <div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
     <div class="mx-auto w-full max-w-sm lg:w-96">
       <div>
-
+        <!-- Logo -->
         <app-widget-image-holder src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="ztar"
           cssClasses="h-10 w-auto"> </app-widget-image-holder>
-
+        <!-- Title -->
         <h2 class="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign up
         </h2>
       </div>
 
       <div class="mt-10">
         <div>
+          <!-- Form -->
           <form [formGroup]="signUpForm" #signUpNgForm="ngForm" class="space-y-6">
-
+            <!-- First Name -->
             <div class="mt-2">
               <mat-form-field class="w-full">
                 <mat-label>First name</mat-label>
@@ -23,13 +24,14 @@
                 </mat-error>
               </mat-form-field>
             </div>
-
+            <!-- Last Name -->
             <div class="mt-2">
               <mat-form-field class="w-full">
                 <mat-label>Last name</mat-label>
                 <input id="name" matInput [formControlName]="'last_name'">
               </mat-form-field>
             </div>
+            <!-- Email -->
             <div class="mt-2">
               <mat-form-field class="w-full">
                 <mat-label>Email address</mat-label>
@@ -42,9 +44,8 @@
                 </mat-error>
               </mat-form-field>
             </div>
-
+            <!-- Password -->
             <div class="mt-2">
-              <!-- Password field -->
               <mat-form-field class="w-full">
                 <mat-label>Password</mat-label>
                 <input id="password" matInput type="password" [formControlName]="'password'" #passwordField>
@@ -60,16 +61,13 @@
                 <mat-error *ngIf="signUpForm.get('password')?.hasError('required')">
                   Password is required.
                 </mat-error>
-
                 <mat-error *ngIf="signUpForm.get('password')?.hasError('strong')">
                   Must have at least one number, one lowercase and one uppercase letter and one special character.
                 </mat-error>
-
               </mat-form-field>
             </div>
-
+            <!-- Confirm Password -->
             <div class="mt-2">
-              <!-- Password field -->
               <mat-form-field class="w-full">
                 <mat-label>Confirm Password</mat-label>
                 <input id="password" matInput type="password" [formControlName]="'confirm_password'"
@@ -83,14 +81,12 @@
                 <mat-error *ngIf="signUpForm.get('confirm_password')?.hasError('required')">
                   Confirm password is required.
                 </mat-error>
-
                 <mat-error *ngIf="signUpForm.get('confirm_password')?.hasError('mustMatch')">
                   Passwords must match.
                 </mat-error>
-
               </mat-form-field>
             </div>
-
+            <!-- Submit -->
             <div>
               <button type="submit" (click)="signUp()" [disabled]="signUpForm.disabled" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold
                 leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2
@@ -99,7 +95,7 @@
             </div>
           </form>
         </div>
-
+        <!-- Already have an account -->
         <div class="mt-10">
           <div class="relative">
             <div class="absolute inset-0 flex items-center" aria-hidden="true">
@@ -120,6 +116,7 @@
       </div>
     </div>
   </div>
+  <!-- Side Image -->
   <div class="relative hidden w-0 flex-1 lg:block">
     <app-widget-image-holder
       src="https://images.unsplash.com/photo-1496917756835-20cb06e75b4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"

@@ -7,14 +7,13 @@ import {
 import { CategoriesService } from '../categories.service';
 import { Category } from '../categories.types';
 
-import { EditCategoryService } from './edit-category.service';
-
 @Injectable({
   providedIn: 'root',
 })
 export class EditCategoryResolver implements Resolve<Category> {
   /**
    * Constructor
+   * @param {CategoriesService}_categoriesService
    */
   constructor(private _categoriesService: CategoriesService) {}
 
@@ -30,7 +29,6 @@ export class EditCategoryResolver implements Resolve<Category> {
     state: RouterStateSnapshot
   ): Promise<Category> {
     const id: string = route.paramMap.get('id') as string;
-
     return this._categoriesService.getCategoryById(id);
   }
 }

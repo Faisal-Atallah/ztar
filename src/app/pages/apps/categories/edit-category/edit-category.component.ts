@@ -30,7 +30,7 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
   /**
-   *
+   * Constructor
    * @param {FormBuilder}_formBuilder
    * @param {EditCategoryService}_editCategoryService
    * @param {ChangeDetectorRef}_changeDetectorRef

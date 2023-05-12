@@ -17,8 +17,9 @@ export class NoAuthGuard implements CanMatch {
   /**
    * Can match
    *
-   * @param route
-   * @param segments
+   * @param {Route}route
+   * @param {UrlSegment[]}segments
+   *
    */
   canMatch(
     route: Route,
@@ -35,6 +36,7 @@ export class NoAuthGuard implements CanMatch {
    * Check the authenticated status
    *
    * @private
+   * @returns {Observable<boolean>}
    */
   private _check(): Observable<boolean> {
     // Check the authentication status and return an observable of

@@ -4,6 +4,7 @@
     <div class="fixed inset-0 flex">
       <div class="relative mr-16 flex w-full max-w-xs flex-1">
         <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+          <!-- close -->
           <button type="button" class="-m-2.5 p-2.5">
             <span class="sr-only">Close sidebar</span>
             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -14,8 +15,9 @@
         </div>
         <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
           <div class="flex h-16 shrink-0 items-center">
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="Your Company">
+            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="ztar">
           </div>
+          <!-- Navbar -->
           <app-partials-nav [navItems]="navItems"></app-partials-nav>
         </div>
       </div>
@@ -25,20 +27,23 @@
   <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
     <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
       <div class="flex h-16 shrink-0 items-center">
-        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="Your Company">
+        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="ztar">
       </div>
+      <!-- Navbar -->
       <app-partials-nav [navItems]="navItems"></app-partials-nav>
     </div>
   </div>
 
   <div class="lg:pl-72 h-full">
 
+    <!-- Header -->
     <app-partials-header>
       <button (click)="signOut()" slot-actions mat-icon-button aria-label="logout" title="Logout">
         <mat-icon>meeting_room</mat-icon>
       </button>
     </app-partials-header>
 
+    <!-- Content -->
     <app-partials-content>
       <router-outlet slot-content *ngIf="true"></router-outlet>
     </app-partials-content>

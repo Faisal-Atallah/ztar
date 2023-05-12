@@ -10,18 +10,16 @@ import { AuthService } from '../auth.service';
 export class AuthGuard implements CanMatch {
   /**
    * Constructor
+   * @param {AuthService}_authService
+   * @param {Router}_router
    */
   constructor(private _authService: AuthService, private _router: Router) {}
-
-  // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
-  // -----------------------------------------------------------------------------------------------------
 
   /**
    * Can match
    *
-   * @param route
-   * @param segments
+   * @param {Route}route
+   * @param {UrlSegment[]}segments
    */
   canMatch(
     route: Route,
@@ -34,15 +32,12 @@ export class AuthGuard implements CanMatch {
     return this._check(segments);
   }
 
-  // -----------------------------------------------------------------------------------------------------
-  // @ Private methods
-  // -----------------------------------------------------------------------------------------------------
-
   /**
    * Check the authenticated status
    *
-   * @param segments
+   * @param {UrlSegment[]}segments
    * @private
+   * @returns {Observable<boolean | UrlTree>}
    */
   private _check(segments: UrlSegment[]): Observable<boolean | UrlTree> {
     // Check the authentication status

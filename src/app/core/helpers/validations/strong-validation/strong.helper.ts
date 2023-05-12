@@ -1,8 +1,5 @@
 import { FormControl } from '@angular/forms';
-
-export interface ValidationResult {
-  [key: string]: boolean;
-}
+import { ValidationResult } from './strong-validation.types';
 
 export class StrongValidator {
   public static strong(control: FormControl): ValidationResult | null {

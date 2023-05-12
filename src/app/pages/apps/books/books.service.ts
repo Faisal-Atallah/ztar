@@ -15,7 +15,7 @@ export class BooksService {
 
   /**
    * Constructor
-   * @param {AngularFirestore}_angularFirestorep
+   * @param {AngularFirestore}_angularFirestore
    * @param {Router}_router
    */
   constructor(
@@ -52,9 +52,9 @@ export class BooksService {
   /**
    * Get Books By Category
    * @param {string}id
-   * @returns {Promise<Book>}
+   * @returns {Promise<Book[]>}
    */
-  getBooksByCategory(category: string): Promise<Book> {
+  getBooksByCategory(category: string): Promise<Book[]> {
     return new Promise<any>((resolve) => {
       this._angularFirestore
         .collection(BOOKS_API_END_POINT, (ref) =>

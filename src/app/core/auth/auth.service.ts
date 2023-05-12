@@ -7,10 +7,7 @@ import {
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { SIGN_IN_ROUTE_PATH_WITH_SLASH } from 'src/app/pages/auth/sign-in';
-import {
-  HOME_ROUTE_PATH,
-  HOME_ROUTE_PATH_WITH_SLASH,
-} from 'src/app/pages/landing/home';
+import { HOME_ROUTE_PATH_WITH_SLASH } from 'src/app/pages/landing/home';
 import { StorageService } from '../helpers/storage';
 import { User, USER_AUTH } from '../user';
 import { navigate } from '../utils';
@@ -83,7 +80,6 @@ export class AuthService {
   signOut(): void {
     this._angularFireAuth.signOut().then(() => {
       this._storageService.removeData(USER_AUTH);
-
       this._navigateToSignIn();
     });
   }

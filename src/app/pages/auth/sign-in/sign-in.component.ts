@@ -33,6 +33,7 @@ export class SignInComponent implements OnInit {
 
   /**
    * Sign In
+   * @returns {void}
    */
   signIn(): void {
     // Return if the form is invalid
@@ -56,6 +57,7 @@ export class SignInComponent implements OnInit {
   /**
    * Create Sign In Form
    * @private
+   * @returns {void}
    */
   private _createSignInForm(): void {
     this.signInForm = this._formBuilder.nonNullable.group({

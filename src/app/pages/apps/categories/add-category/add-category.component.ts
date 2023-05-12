@@ -24,6 +24,12 @@ export class AddCategoryComponent implements OnInit {
 
   addCategoryForm: FormGroup<AddCategoryForm>;
 
+  /**
+   * Constructor
+   * @param {FormBuilder}_formBuilder
+   * @param {AddCategoryService}_addCategoryService
+   * @param {Router}_router
+   */
   constructor(
     private _formBuilder: FormBuilder,
     private _addCategoryService: AddCategoryService,
