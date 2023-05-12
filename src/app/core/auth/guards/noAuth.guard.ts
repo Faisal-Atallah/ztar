@@ -7,17 +7,12 @@ import { AuthService } from '..';
   providedIn: 'root',
 })
 export class NoAuthGuard implements CanMatch {
-
   /**
    * Constructor
    * @param {AuthService} _authService
    * @param {Router} _router
    */
   constructor(private _authService: AuthService, private _router: Router) {}
-
-  // -----------------------------------------------------------------------------------------------------
-  // @ Public methods
-  // -----------------------------------------------------------------------------------------------------
 
   /**
    * Can match
@@ -35,10 +30,6 @@ export class NoAuthGuard implements CanMatch {
     | UrlTree {
     return this._check();
   }
-
-  // -----------------------------------------------------------------------------------------------------
-  // @ Private methods
-  // -----------------------------------------------------------------------------------------------------
 
   /**
    * Check the authenticated status

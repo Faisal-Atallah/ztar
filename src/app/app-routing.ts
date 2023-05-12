@@ -10,27 +10,17 @@ import { ERROR_ROUTE_PATH } from './pages/error/error-500/error-500.constants';
 import { HOME_ROUTE_PATH } from './pages/landing/home/home.constants';
 
 export const appRoutes: Route[] = [
-  { path: '', redirectTo: SIGN_IN_ROUTE_PATH, pathMatch: 'full' },
   {
     path: '',
-    canMatch: [NoAuthGuard],
-    component: LayoutComponent,
-    data: {
-      layout: 'empty',
-    },
-    children: [
-      {
-        path: SIGN_IN_ROUTE_PATH,
-        loadChildren: () =>
-          import('../app/pages/auth/sign-in').then((m) => m.SignInModule),
-      },
-      {
-        path: SIGN_UP_ROUTE_PATH,
-        loadChildren: () =>
-          import('../app/pages/auth/sign-up').then((m) => m.SignUpModule),
-      },
-    ],
+    redirectTo: SIGN_IN_ROUTE_PATH,
+    pathMatch: 'full'
   },
+  // {
+  //   path: '',
+  //   redirectTo: HOME_ROUTE_PATH,
+  //   pathMatch: 'full',
+  //   canMatch: [AuthGuard],
+  // },
   {
     path: HOME_ROUTE_PATH,
     canMatch: [AuthGuard],
@@ -40,6 +30,26 @@ export const appRoutes: Route[] = [
     },
     loadChildren: () =>
       import('../app/pages/landing/home').then((m) => m.HomeModule),
+  },
+  {
+    path: SIGN_IN_ROUTE_PATH,
+    canMatch: [NoAuthGuard],
+    component: LayoutComponent,
+    data: {
+      layout: 'empty',
+    },
+    loadChildren: () =>
+      import('../app/pages/auth/sign-in').then((m) => m.SignInModule),
+  },
+  {
+    path: SIGN_UP_ROUTE_PATH,
+    canMatch: [NoAuthGuard],
+    component: LayoutComponent,
+    data: {
+      layout: 'empty',
+    },
+    loadChildren: () =>
+      import('../app/pages/auth/sign-up').then((m) => m.SignUpModule),
   },
   {
     path: CATEGORIES_ROUTE_PATH,
@@ -81,6 +91,7 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('../app/pages/error/error-500').then((m) => m.Error500Module),
   },
-  { path: '**', redirectTo: SIGN_IN_ROUTE_PATH, canMatch: [NoAuthGuard] },
-  { path: '**', redirectTo: HOME_ROUTE_PATH, canMatch: [AuthGuard] },
+
+  // { path: '**', redirectTo: SIGN_IN_ROUTE_PATH },
+  // { path: '**', redirectTo: HOME_ROUTE_PATH },
 ];

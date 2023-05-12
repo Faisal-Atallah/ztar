@@ -6,7 +6,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { SIGN_IN_ROUTE_PATH } from 'src/app/pages/auth/sign-in';
+import { SIGN_IN_ROUTE_PATH_WITH_SLASH } from 'src/app/pages/auth/sign-in';
 import { HOME_ROUTE_PATH } from 'src/app/pages/landing/home';
 import { StorageService } from '../helpers/storage';
 import { User, USER_AUTH } from '../user';
@@ -79,7 +79,10 @@ export class AuthService {
   signOut(): void {
     this._angularFireAuth.signOut().then(() => {
       this._storageService.removeData(USER_AUTH);
-      this._router.navigate([`/${SIGN_IN_ROUTE_PATH}`]);
+
+      setTimeout(() => {
+        this._router.navigate([SIGN_IN_ROUTE_PATH_WITH_SLASH]);
+      }, 500);
     });
   }
 
@@ -88,7 +91,7 @@ export class AuthService {
    * @returns {Observable<boolean>}
    */
   isAccessAllowed(): Observable<boolean> {
-    return this._storageService.getData(USER_AUTH) !== null
+    return this._storageService.getData(USER_AUTH) !== 'null'
       ? of(true)
       : of(false);
   }
