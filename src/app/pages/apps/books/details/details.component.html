@@ -1,1 +1,14 @@
-<p>details works!</p>
+<div class="flex h-full w-full min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+  <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{book?.name}}</mat-card-title>
+        <mat-card-subtitle>{{book?.category}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>By: {{book?.author}}</p>
+        <p>{{book?.description}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

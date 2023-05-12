@@ -42,7 +42,11 @@
 
             <mat-card class="flex flex-col shadow h-36">
               <mat-card-header>
-                <mat-card-title>{{book?.name}}</mat-card-title>
+
+                <mat-card-title>
+                  <a [routerLink]="[book.id]">{{book?.name}}</a>
+                </mat-card-title>
+
                 <mat-card-subtitle>{{book?.category}}</mat-card-subtitle>
               </mat-card-header>
             </mat-card>

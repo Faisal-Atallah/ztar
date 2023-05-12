@@ -61,6 +61,7 @@ export class BooksService {
           ref.where('category', '==', category)
         )
         .valueChanges()
+        .pipe(shareReplay({ bufferSize: 1, refCount: true }))
         .subscribe((books) => {
           resolve(books);
           this._books.next(books);
