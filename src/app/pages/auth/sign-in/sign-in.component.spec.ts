@@ -44,39 +44,41 @@ describe('SignInComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  describe('Form Validation', () => {
+    it('should create a form with email and password fields', () => {
+      expect(component.signInForm.contains('email')).toBeTrue();
+      expect(component.signInForm.contains('password')).toBeTrue();
+    });
 
-  it('should create a form with email and password fields', () => {
-    expect(component.signInForm.contains('email')).toBeTrue();
-    expect(component.signInForm.contains('password')).toBeTrue();
+    it('should make the email field required', () => {
+      const emailControl = component.signInForm.get('email');
+      emailControl?.setValue('');
+      expect(emailControl?.valid).toBeFalsy();
+    });
+
+    it('should make the email field require a valid email', () => {
+      const emailControl = component.signInForm.get('email');
+      emailControl?.setValue('invalidemail');
+      expect(emailControl?.valid).toBeFalsy();
+    });
+
+    it('should make the password field required', () => {
+      const passwordControl = component.signInForm.get('password');
+      passwordControl?.setValue('');
+      expect(passwordControl?.valid).toBeFalsy();
+    });
   });
-
-  it('should make the email field required', () => {
-    const emailControl = component.signInForm.get('email');
-    emailControl?.setValue('');
-    expect(emailControl?.valid).toBeFalsy();
-  });
-
-  it('should make the email field require a valid email', () => {
-    const emailControl = component.signInForm.get('email');
-    emailControl?.setValue('invalidemail');
-    expect(emailControl?.valid).toBeFalsy();
-  });
-
-  it('should make the password field required', () => {
-    const passwordControl = component.signInForm.get('password');
-    passwordControl?.setValue('');
-    expect(passwordControl?.valid).toBeFalsy();
-  });
-
-  it('should submit the form when valid', () => {
-    spyOn(component, 'signIn');
-    const emailControl = component.signInForm.get('email');
-    const passwordControl = component.signInForm.get('password');
-    emailControl?.setValue('faisal.attallah@hotmail.com');
-    passwordControl?.setValue('password');
-    const form = fixture.debugElement.query(By.css('form'));
-    form.triggerEventHandler('ngSubmit', null);
-    fixture.detectChanges();
-    expect(component.signIn).toHaveBeenCalled();
+  describe('Form Submission', () => {
+    it('should submit the form when its valid', () => {
+      spyOn(component, 'signIn');
+      const emailControl = component.signInForm.get('email');
+      const passwordControl = component.signInForm.get('password');
+      emailControl?.setValue('faisal.attallah@hotmail.com');
+      passwordControl?.setValue('password');
+      const form = fixture.debugElement.query(By.css('form'));
+      form.triggerEventHandler('ngSubmit', null);
+      fixture.detectChanges();
+      expect(component.signIn).toHaveBeenCalled();
+    });
   });
 });
