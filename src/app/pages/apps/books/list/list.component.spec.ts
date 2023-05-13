@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/app/shared/modules';
+import { PageHeaderModule } from 'src/app/widget/page-header';
 import { environment } from 'src/environments/environment';
 
 import { BooksListComponent } from './list.component';
@@ -18,6 +19,7 @@ describe('BooksListComponent', () => {
       imports: [
         BrowserAnimationsModule,
         MaterialModule,
+        PageHeaderModule,
         AngularFireModule.initializeApp(environment.firebase),
       ],
       providers: [AngularFireAuth, AngularFirestore],
