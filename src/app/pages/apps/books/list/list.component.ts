@@ -62,7 +62,6 @@ export class BooksListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((books: Book[]) => {
         this.filteredBooks = books;
-        console.log(books);
         this._changeDetectorRef.markForCheck();
       })
       .add(() => {

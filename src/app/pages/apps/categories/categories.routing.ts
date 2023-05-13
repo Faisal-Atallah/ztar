@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { CategoriesComponent } from './categories.component';
-import { CategoriesResolver } from './categories.resolvers';
+import { CategoriesResolver } from './categories.resolver';
 
 export const categoriesRoutes: Route[] = [
   {
