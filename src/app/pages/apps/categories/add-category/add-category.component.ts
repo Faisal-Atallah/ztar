@@ -11,7 +11,9 @@ import { navigate } from 'src/app/core/utils';
 import { CATEGORIES_ROUTE_PATH_WITH_SLASH } from '../categories.constants';
 import { AddCategoryService } from './add-category.service';
 import { AddCategoryForm } from './add-category.types';
-
+import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { Category } from '../categories.types';
 @Component({
   selector: 'app-add-category',
   templateUrl: './add-category.component.html',
@@ -21,7 +23,8 @@ import { AddCategoryForm } from './add-category.types';
 })
 export class AddCategoryComponent implements OnInit {
   @ViewChild('addCategoryNgForm') addCategoryNgForm: NgForm;
-
+  books: string[] = [];
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
   addCategoryForm: FormGroup<AddCategoryForm>;
 
   /**
@@ -44,6 +47,18 @@ export class AddCategoryComponent implements OnInit {
   }
 
   /**
+   * Create Add Category Form
+   * @private
+   * @returns {void}
+   */
+  private _createAddCategoryForm(): void {
+    this.addCategoryForm = this._formBuilder.nonNullable.group({
+      name: ['', [Validators.required]],
+      books: [],
+    });
+  }
+
+  /**
    * Add Category
    * @returns {void}
    */
@@ -52,23 +67,60 @@ export class AddCategoryComponent implements OnInit {
       return;
     }
 
-    this.addCategoryForm.disable();
+    const category: Category = {
+      id: '',
+      name: this.addCategoryForm.get('name')?.value as string,
+      books: this.books,
+    };
 
-    const name: string = this.addCategoryForm.get('name')?.value as string;
-
-    this._addCategoryService.addCategory(name).then(() => {
+    this._addCategoryService.addCategory(category).then(() => {
       navigate(CATEGORIES_ROUTE_PATH_WITH_SLASH, this._router);
     });
   }
 
   /**
-   * Create Add Category Form
-   * @private
+   * Add Book
+   * @param {MatChipInputEvent}event
    * @returns {void}
    */
-  private _createAddCategoryForm(): void {
-    this.addCategoryForm = this._formBuilder.nonNullable.group({
-      name: ['', [Validators.required]],
-    });
+  addBook(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    if (value) {
+      this.books.push(value);
+    }
+    event.chipInput!.clear();
+  }
+
+  /**
+   * Edit Book
+   * @param {string}book
+   * @param {MatChipEditedEvent}event
+   * @returns {void}
+   */
+  editBook(book: string, event: MatChipEditedEvent): void {
+    const value = event.value.trim();
+
+    if (!value) {
+      this.removeBook(book);
+      return;
+    }
+    const index = this.books.indexOf(book);
+    if (index >= 0) {
+      this.books[index] = value;
+    }
+  }
+
+  /**
+   * Remove Book
+   * @param {string}book
+   * @returns {void}
+   */
+  removeBook(book: string): void {
+    const index = this.books.indexOf(book);
+
+    if (index >= 0) {
+      this.books.splice(index, 1);
+    }
   }
 }

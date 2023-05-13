@@ -29,7 +29,7 @@ export class EditCategoryService {
   editCategory(category: Category): void {
     this._angularFirestore
       .doc(`${CATEGORIES_API_END_POINT}/${category.id}`)
-      .update({ name: category.name })
+      .update({ name: category.name, books: category.books })
       .catch((error) => {
         this._router.navigate([ERROR_ROUTE_PATH_WITH_SLASH]);
         navigate(ERROR_ROUTE_PATH_WITH_SLASH, this._router);

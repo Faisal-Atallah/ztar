@@ -18,6 +18,24 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <!-- Books -->
+        <div class="mt-2">
+          <mat-form-field class="w-full" appearance="fill">
+            <mat-label>Books</mat-label>
+            <mat-chip-grid #chipBooks aria-label="Enter books">
+
+              <mat-chip-row *ngFor="let book of books" (removed)="removeBook(book)" [editable]="true"
+                (edited)="editBook(book, $event)" [aria-description]="'press enter to edit ' + book">
+                {{book}}
+                <button matChipRemove [attr.aria-label]="'remove ' + book">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-chip-row>
+              <input [formControlName]="'books'" [matChipInputFor]="chipBooks"
+              (matChipInputTokenEnd)="addBook($event)" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" />
+            </mat-chip-grid>
+          </mat-form-field>
+        </div>
 
         <!-- Actions -->
         <div>

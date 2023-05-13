@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CATEGORIES_API_END_POINT } from 'src/app/core/constants';
 import { navigate } from 'src/app/core/utils';
 import { ERROR_ROUTE_PATH_WITH_SLASH } from 'src/app/pages/error/error-500';
+import { Category } from '../categories.types';
 
 @Injectable({
   providedIn: 'root',
@@ -21,15 +22,15 @@ export class AddCategoryService {
 
   /**
    * Add Category
-   * @param {string}name
+   * @param {Category}name
    * @returns {Promise<any>}
    */
-  addCategory(name: string): Promise<any> {
+  addCategory(category: Category): Promise<any> {
     return new Promise<any>((resolve) => {
       this._angularFirestore
         .collection(CATEGORIES_API_END_POINT)
         .doc()
-        .set({ name: name });
+        .set({ name: category.name, books: category.books });
       resolve([]);
     }).catch((error) => {
       navigate(ERROR_ROUTE_PATH_WITH_SLASH, this._router);
