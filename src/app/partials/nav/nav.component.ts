@@ -1,4 +1,9 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { trackByFn } from 'src/app/core/utils';
 import { NavItem } from 'src/app/shared/types';
 
@@ -6,7 +11,8 @@ import { NavItem } from 'src/app/shared/types';
   selector: 'app-partials-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavComponent {
   @Input() navItems: NavItem[];
