@@ -23,6 +23,11 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
+  /**
+   * Constructor
+   * @param {BookDetailsService}_bookDetailsService
+   * @param {ChangeDetectorRef}_changeDetectorRef
+   */
   constructor(
     private _bookDetailsService: BookDetailsService,
     private _changeDetectorRef: ChangeDetectorRef

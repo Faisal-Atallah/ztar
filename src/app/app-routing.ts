@@ -16,12 +16,6 @@ export const appRoutes: Route[] = [
     redirectTo: SIGN_IN_ROUTE_PATH,
     pathMatch: 'full',
   },
-  // {
-  //   path: '',
-  //   redirectTo: HOME_ROUTE_PATH,
-  //   pathMatch: 'full',
-  //   canMatch: [AuthGuard],
-  // },
   {
     path: HOME_ROUTE_PATH,
     canMatch: [AuthGuard],
@@ -103,6 +97,6 @@ export const appRoutes: Route[] = [
       import('../app/pages/error/error-500').then((m) => m.Error500Module),
   },
 
-  { path: '**', redirectTo: SIGN_IN_ROUTE_PATH },
-  { path: '**', redirectTo: HOME_ROUTE_PATH },
+  { path: '**', redirectTo: SIGN_IN_ROUTE_PATH, canMatch: [NoAuthGuard] },
+  { path: '**', redirectTo: HOME_ROUTE_PATH, canMatch: [AuthGuard] },
 ];

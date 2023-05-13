@@ -13,6 +13,11 @@ import { Book } from '../books.types';
 export class BookDetailsService {
   private _book: BehaviorSubject<Book | any> = new BehaviorSubject(null);
 
+  /**
+   * Constructor
+   * @param {AngularFirestore}_angularFirestore
+   * @param {Router}_router
+   */
   constructor(
     private _angularFirestore: AngularFirestore,
     private _router: Router

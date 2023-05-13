@@ -19,7 +19,6 @@ export class BooksResolver implements Resolve<Book[]> {
 
   /**
    * Resolver
-   *
    * @param {ActivatedRouteSnapshot}route
    * @param {RouterStateSnapshot}state
    * @returns {Promise<any>}
