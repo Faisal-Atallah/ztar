@@ -62,10 +62,10 @@ export class SignInComponent implements OnInit {
   private _createSignInForm(): void {
     this.signInForm = this._formBuilder.nonNullable.group({
       email: [
-        '',
+        'faisal.attallah@hotmail.com',
         [Validators.required, Validators.email],
       ],
-      password: ['', Validators.required],
+      password: ['12345678Faisal$', Validators.required],
     });
   }
 }
