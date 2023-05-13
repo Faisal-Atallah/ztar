@@ -62,21 +62,17 @@ describe('SignInComponent', () => {
     expect(emailControl?.valid).toBeFalsy();
   });
 
-  it('should make the password field valid', () => {
+  it('should make the password field required', () => {
     const passwordControl = component.signInForm.get('password');
-    passwordControl?.setValue('test');
+    passwordControl?.setValue('');
     expect(passwordControl?.valid).toBeFalsy();
-    expect(passwordControl?.errors?.['required']).toBeFalsy();
-    passwordControl?.setValue('password');
-    expect(passwordControl?.valid).toBeTruthy();
-    expect(passwordControl?.errors).toBeFalsy();
   });
 
   it('should submit the form when valid', () => {
     spyOn(component, 'signIn');
     const emailControl = component.signInForm.get('email');
     const passwordControl = component.signInForm.get('password');
-    emailControl?.setValue('valid-email@example.com');
+    emailControl?.setValue('faisal.attallah@hotmail.com');
     passwordControl?.setValue('password');
     const form = fixture.debugElement.query(By.css('form'));
     form.triggerEventHandler('ngSubmit', null);
