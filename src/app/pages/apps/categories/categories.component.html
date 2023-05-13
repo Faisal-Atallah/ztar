@@ -17,7 +17,7 @@
   <div class="flex flex-auto overflow-hidden">
     <!-- Categories -->
     <div class="flex flex-col flex-auto sm:mb-18 overflow-hidden sm:overflow-y-auto">
-      <ng-container *ngIf="categories.length; else noCategories">
+      <ng-container *ngIf="categories?.length; else noCategories">
         <app-categories-list [categories]="categories" (editCategoryEvent)="editCategory($event)"
           (deleteCategoryEvent)="deleteCategory($event)">
         </app-categories-list>

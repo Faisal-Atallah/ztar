@@ -30,13 +30,13 @@
           <mat-select [value]="'all'" (selectionChange)="filterByCategory($event)">
             <mat-option [value]="'all'">All</mat-option>
             <ng-container *ngFor="let category of categories; trackBy: trackByFn">
-              <mat-option [value]="category.name">{{category?.name}}</mat-option>
+              <mat-option [value]="category?.name">{{category?.name}}</mat-option>
             </ng-container>
           </mat-select>
         </mat-form-field>
       </div>
       <!-- Books -->
-      <ng-container *ngIf="this.filteredBooks.length; else noBooks">
+      <ng-container *ngIf="this.filteredBooks?.length; else noBooks">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 sm:mt-10">
           <ng-container *ngFor="let book of filteredBooks; trackBy: trackByFn">
 
@@ -44,7 +44,7 @@
               <mat-card-header>
 
                 <mat-card-title>
-                  <a [routerLink]="[book.id]">{{book?.name}}</a>
+                  <a [routerLink]="[book?.id]">{{book?.name}}</a>
                 </mat-card-title>
 
                 <mat-card-subtitle>{{book?.category}}</mat-card-subtitle>

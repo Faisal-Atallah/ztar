@@ -6,7 +6,7 @@
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
     <div class="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
       <!-- Form -->
-      <form [formGroup]="editCategoryForm" #editCategoryNgForm="ngForm" class="space-y-6">
+      <form *ngIf="category" [formGroup]="editCategoryForm" #editCategoryNgForm="ngForm" class="space-y-6">
         <!-- Name -->
         <div class="mt-2">
           <mat-form-field class="w-full" appearance="fill">

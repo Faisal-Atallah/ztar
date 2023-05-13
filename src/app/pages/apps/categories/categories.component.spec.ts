@@ -1,4 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MaterialModule } from 'src/app/shared/modules';
+import { environment } from 'src/environments/environment';
 
 import { CategoriesComponent } from './categories.component';
 
@@ -8,7 +14,13 @@ describe('CategoriesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CategoriesComponent ]
+      declarations: [ CategoriesComponent ],
+      imports: [
+        MaterialModule,
+        RouterTestingModule,
+        AngularFireModule.initializeApp(environment.firebase),
+      ],
+      providers: [AngularFireAuth, AngularFirestore],
     })
     .compileComponents();
 

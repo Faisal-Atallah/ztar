@@ -25,6 +25,7 @@ import { EditCategoryForm } from './edit-category.types';
 export class EditCategoryComponent implements OnInit, OnDestroy {
   @ViewChild('editCategoryNgForm') editCategoryNgForm: NgForm;
 
+  category:Category;
   editCategoryForm: FormGroup<EditCategoryForm>;
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
@@ -74,6 +75,7 @@ export class EditCategoryComponent implements OnInit, OnDestroy {
     this._categoriesService.category$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((category) => {
+        this.category = category;
         this._createEditCategoryForm(category);
         this._changeDetectorRef.markForCheck();
       });
