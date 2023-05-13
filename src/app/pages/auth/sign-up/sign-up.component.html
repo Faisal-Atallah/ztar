@@ -74,10 +74,10 @@
                 <input id="password" matInput type="password" [formControlName]="'confirm_password'"
                   #confirmPasswordField>
                 <button mat-icon-button type="button"
-                  (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                  (click)="confirmPasswordField.type === 'password' ? confirmPasswordField.type = 'text' : confirmPasswordField.type = 'password'"
                   matSuffix>
-                  <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'password'">visibility</mat-icon>
-                  <mat-icon class="icon-size-5" *ngIf="passwordField.type === 'text'">visibility_off</mat-icon>
+                  <mat-icon class="icon-size-5" *ngIf="confirmPasswordField.type === 'password'">visibility</mat-icon>
+                  <mat-icon class="icon-size-5" *ngIf="confirmPasswordField.type === 'text'">visibility_off</mat-icon>
                 </button>
                 <mat-error *ngIf="signUpForm.get('confirm_password')?.hasError('required')">
                   Confirm password is required.
