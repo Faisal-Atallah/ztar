@@ -57,7 +57,6 @@ export class BookDetailsComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((book) => {
         this.book = book;
-        console.log(book);
         this._changeDetectorRef.markForCheck();
       });
   }

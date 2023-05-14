@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, shareReplay } from 'rxjs';
+import { BehaviorSubject, Observable, retry, shareReplay } from 'rxjs';
 import { BOOKS_API_END_POINT } from 'src/app/core/constants';
 import { navigate } from 'src/app/core/utils';
 import { ERROR_ROUTE_PATH_WITH_SLASH } from 'src/app/pages/error/error-500';
@@ -41,7 +41,7 @@ export class BookDetailsService {
         .collection(BOOKS_API_END_POINT)
         .doc(id)
         .valueChanges({ idField: 'id' })
-        .pipe(shareReplay({ bufferSize: 1, refCount: true }))
+        .pipe(retry(2), shareReplay({ bufferSize: 1, refCount: true }))
         .subscribe((book) => {
           resolve(book);
           this._book.next(book);

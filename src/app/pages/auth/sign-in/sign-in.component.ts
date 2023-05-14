@@ -32,6 +32,21 @@ export class SignInComponent implements OnInit {
   }
 
   /**
+   * Create Sign In Form
+   * @private
+   * @returns {void}
+   */
+  private _createSignInForm(): void {
+    this.signInForm = this._formBuilder.nonNullable.group({
+      email: [
+        'faisal.attallah@hotmail.com',
+        [Validators.required, Validators.email],
+      ],
+      password: ['12345678Faisal$', Validators.required],
+    });
+  }
+
+  /**
    * Sign In
    * @returns {void}
    */
@@ -51,21 +66,6 @@ export class SignInComponent implements OnInit {
       this.signInForm.enable();
 
       this.signInNgForm.resetForm();
-    });
-  }
-
-  /**
-   * Create Sign In Form
-   * @private
-   * @returns {void}
-   */
-  private _createSignInForm(): void {
-    this.signInForm = this._formBuilder.nonNullable.group({
-      email: [
-        'faisal.attallah@hotmail.com',
-        [Validators.required, Validators.email],
-      ],
-      password: ['12345678Faisal$', Validators.required],
     });
   }
 }

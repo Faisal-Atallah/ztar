@@ -38,29 +38,6 @@ export class SignUpComponent implements OnInit {
   }
 
   /**
-   * Sign Up
-   * @returns {void}
-   */
-  signUp(): void {
-    if (this.signUpForm.invalid) {
-      return;
-    }
-
-    this.signUpForm.disable();
-
-    const email: string = this.signUpForm.get('email')?.value as string;
-    const password: string = this.signUpForm.get('password')?.value as string;
-
-    this._authService.signUp(email, password).then(() => {
-      this.signUpForm.enable();
-
-      this.signUpNgForm.resetForm();
-
-      navigate(SIGN_IN_ROUTE_PATH_WITH_SLASH, this._router);
-    });
-  }
-
-  /**
    * Create Sign Up Form
    * @private
    * @returns {void}
@@ -86,5 +63,28 @@ export class SignUpComponent implements OnInit {
         validator: MustMatch('password', 'confirm_password'),
       }
     );
+  }
+
+  /**
+   * Sign Up
+   * @returns {void}
+   */
+  signUp(): void {
+    if (this.signUpForm.invalid) {
+      return;
+    }
+
+    this.signUpForm.disable();
+
+    const email: string = this.signUpForm.get('email')?.value as string;
+    const password: string = this.signUpForm.get('password')?.value as string;
+
+    this._authService.signUp(email, password).then(() => {
+      this.signUpForm.enable();
+
+      this.signUpNgForm.resetForm();
+
+      navigate(SIGN_IN_ROUTE_PATH_WITH_SLASH, this._router);
+    });
   }
 }

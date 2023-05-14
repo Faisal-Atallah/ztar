@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, Observable, retry, shareReplay, tap } from 'rxjs';
 import { CATEGORIES_API_END_POINT } from 'src/app/core/constants';
 import { navigate } from 'src/app/core/utils';
 import { ERROR_ROUTE_PATH_WITH_SLASH } from '../../error/error-500';
@@ -50,7 +50,7 @@ export class CategoriesService {
       this._angularFirestore
         .collection(CATEGORIES_API_END_POINT)
         .valueChanges({ idField: 'id' })
-        .pipe(shareReplay({ bufferSize: 1, refCount: true }))
+        .pipe(retry(2), shareReplay({ bufferSize: 1, refCount: true }))
         .subscribe((categories) => {
           resolve(categories);
           this._categories.next(categories);
@@ -71,6 +71,7 @@ export class CategoriesService {
         .collection(CATEGORIES_API_END_POINT)
         .doc(id)
         .valueChanges({ idField: 'id' })
+        .pipe(retry(2), shareReplay({ bufferSize: 1, refCount: true }))
         .subscribe((category) => {
           resolve(category);
           this._category.next(category);
